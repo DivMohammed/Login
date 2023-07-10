@@ -4,9 +4,6 @@ import Register from './Register/Register'
 import Login from './Login/Login'
 import ForgetPassword from './Login/ForgetPassword'
 
-// import OTPInput from "./Login/OTPInput";
-
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 

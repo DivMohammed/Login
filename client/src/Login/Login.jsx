@@ -12,8 +12,7 @@ import ForgetPassword from './ForgetPassword'
 export const NameEmail = createContext()
 
 
-function Login (){
-// const Login = () =>{
+const Login = () =>{
 
     const inputEmail = useRef().current
 
@@ -36,21 +35,6 @@ function Login (){
       window.location.replace(window.location.origin)
       }else{console.log("JJ")}
   }
-
-  // const nagigateToOtp = async() => {
-  //   if (email) {
-  //     const OTP = Math.floor(Math.random() * 9000 + 1000);
-  //     console.log(OTP);
-  //     setOTP(OTP);
-
-  //     const respawnOtp = await Axios.post("http://localhost:5000/send_recovery_email", {OTP, recipient_email: email})
-  //      respawnOtp.then(() => window.location.replace(`${window.location.origin}/OTPInput`))//* setPage("otp"),
-  //       .catch(console.log);
-  //     return;
-  //   }
-  //   return alert("Please enter your email");
-  // }
-
 
 
 
@@ -120,7 +104,7 @@ function Login (){
                       <a href="/login">تسجيل دخول</a>
                       </>
                       }
-                      <a href="/OTPInput" onClick={() => nagigateToOtp()} style={{display:"block"}}>نسيت كلمة السر؟</a>
+                      <a href="/OTPInput" style={{display:"block"}}>نسيت كلمة السر؟</a> {/* onClick={() => nagigateToOtp()} */}
                     </Form>
     
                   </div>
