@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import './Register.css'
 
-import {useState} from "react"
+import {useState ,useEffect} from "react"
 
 import  {useCookies} from 'react-cookie'
 
@@ -8,53 +9,97 @@ import Axios from "axios"
 
 import {Container, Form, Button} from 'react-bootstrap'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import regImg from '../imgs/regImg.jpg'
+// import backimage from '../imgs/default.jpg'
+import frontimage from '../imgs/icondefult.jpg'
+
+import { AiFillEye } from "react-icons/ai";
+
 
 
   const Register = () =>{
 
     const [username , setUsername] = useState("")
+    // const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const [email , setEmail] = useState("")
     const [password , setPassword] = useState("")
+    const [show , setShow] = useState("")
+    const [checkPassword , setCheckPassword] = useState("")
+    const [error, setError] = useState (null);
+    const [alertt, setAlertt] = useState ("none");
+    const [alerttemail, setAlerttemail] = useState ("none");
+
+
+    // const [backgroundImage, ] = useState (backimage);
+    const [backgroundImage, ] = useState ("default.jpg");
+
+    const [avatar, ] = useState (frontimage);
+
+    const _PORT = 3002
+
+    // const [backgroundImage, setBackgroundImage] = useState (backimage);
+    // const [avatar, setavatar] = useState (frontimage);
+
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+      // setEmail(event.target.value) 
+  };
+
+  const validateEmail = () => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!emailRegex.test(email)) {
+        setError(false);
+    } else {
+        setError(true);
+    }
+};
+
+useEffect(() => {
+    validateEmail();
+}, [email]);
+
+
+console.log(error)
 
     const [, setCookies] = useCookies(["accsee_token"])
 
-    const onSubmit = async(e) => {
+
+    var onSubmit = async(e) => {
       //In order not to reload the page
       e.preventDefault()
-      const respawn = await Axios.post("http://localhost:3001/register",{username, password, email})
-      if(respawn){
+
+      if(password === checkPassword && error){
+      const respawn = await Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/register`,{username, password, email, backgroundImage, avatar})
+        if(respawn.data.adminID){
         setCookies("access_token" , respawn.data.token)
         window.localStorage.setItem("userID", respawn.data.adminID)
-        alert("Admin Created")
-        console.log(respawn)
-        window.location.replace(window.location.origin)
+        window.location.replace(window.origin)
+        } 
+        if (respawn.data.message === "email already have" ){
+          setAlerttemail("block") + console.log("nottemail")
+        }
+    }else if (password !== checkPassword){
+      // setInterval(() => {
+        setAlertt("block") + console.log("nott")
+    // }, 2000);
     }
     }
+  
 
-    return (
-        <AuthForm
-      label="Register"
-      username={username}
-      setUsername={setUsername}
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      onSubmit={onSubmit}
-      />
-    )
+    const showThePassword = () => {
+      setShow(prev=> !prev)
   }
-
-  const AuthForm = ({label, username, setUsername, email, setEmail, password, setPassword, onSubmit}) => {
 
 
   return (
   <Container>
 
-  <section className="vh-100" >
+{/* <i onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} className={`fa-solid fa-bars ${isIconActive ? "fa-times " + "setP": "" }`} ref={icon}> {isIconActive? <AiOutlineClose/> :<HiBars3/> }</i> */}
+
+
+  <section className="register_up" style={{marginTop:"150px" , marginBottom:"100px"}} >
     <div className="container h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-lg-12 col-xl-11">
@@ -70,9 +115,11 @@ import regImg from '../imgs/regImg.jpg'
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
-                    <Form.Control type="text" placeholder="Name"
+                    <Form.Control type="text" placeholder="الأسم"
                             id = "username" value={username}
                             onChange={e => setUsername(e.target.value)}
+                            required
+                            style={{textAlign:"right"}}
                     />
                     </div>
                     </div>
@@ -80,40 +127,64 @@ import regImg from '../imgs/regImg.jpg'
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
-                    <Form.Control type="email" placeholder="Email"
+                    <Form.Control type="email" placeholder="البريد الألكتروني"
                             id = "email" value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={handleEmailChange}
+                            className={`border border-${error || !email ? "" : "danger"}`}
+                            required
                     />
                     </div>
                     </div>
 
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-                      <div className="form-outline flex-fill mb-0">
-                    <Form.Control type="text" placeholder="Password" 
+                      <div className="form-outline flex-fill mb-0 position-relative">
+                    <Form.Control type={!show ? "password" : "text"} placeholder="كلمة المرور" 
                             id="password" value={password}
                             onChange={e => setPassword(e.target.value)}
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            required
+                            />
+                    {password && <AiFillEye onClick={showThePassword} style={{position:"absolute", top:"11px", right:"10px", color:"#9f9f9f", cursor:"pointer", fontSize:"19px"}}/>}
+                    <label htmlFor="password" style={{fontSize:"12px", display:"block", textAlign:"right", color:"#9f9f9f"}}>يجب أن يحتوي على حرف كبير , رقم واحد على الأقل و أن يكون من ثماني كلمات او أكثر &#42;</label>
+                    </div>
+                    </div>
+
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div className="form-outline flex-fill mb-0  position-relative">
+                    <Form.Control type={!show ? "password" : "text"} placeholder="اعد كتابة كلمة المرور" 
+                            id="checkPassword" value={checkPassword}
+                            onChange={e => setCheckPassword(e.target.value)}
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            required
                     />
                     </div>
                     </div>
 
                     <div className="form-check d-flex justify-content-center mb-5">
-                    <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                      <label className="form-check-label" htmlFor="form2Example3c">
-                        أنا أوافق على جميع <a href="#!">الشروط و الأحكام</a>
+                    <label className="form-check-label" htmlFor="form2Example3c" style={{paddingRight:"30px"}}>
+                        أنا أوافق على جميع <a href="/TermsAndConditions" target="_blank">الشروط و الأحكام</a>
                       </label>
+                    <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
                     </div>
 
-                    <Button style={{width:"100%"}} variant="success" type="submit">{label}</Button>
-                    {label === "login"? 
+                    <Button style={{width:"100%"}} variant="success" type="submit">تسجيل</Button>
+                    {/* {label === "login"? 
                     <Link to="/register" className="nav-link">تسجيل مستخدم جديد</Link>
                     :
-                    <>
+                    <> */}
                     <p>لدي حساب مسبق</p>
                      <a href="/login">تسجيل دخول</a>
-                    </>
-                    }
+                    {/* </>
+                    } */}
                   </Form>
+
+                  {/* {error && (
+                <div className="bg-red-800 p-4 font-bold text-white">
+                    {error}
+                </div>
+            )} */}
   
                 </div>
                 <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
@@ -127,21 +198,30 @@ import regImg from '../imgs/regImg.jpg'
         </div>
       </div>
     </div>
-  </section>
+        <div className="alertt" style={{display:alertt}}>
+        <span className="closebtn" onClick={()=> setAlertt("none")}>&times;</span> 
+        <strong>تحذير!</strong> كلمة المرور غير متطابقة
+        </div>
 
+        <div className="alerttEmail" style={{display:alerttemail}}>
+        <span className="closebtn" onClick={()=> setAlerttemail("none")}>&times;</span> 
+        <strong>تحذير!</strong> البريد الألكتروني مستخدم
+        </div>
+  </section>
   </Container>
     )
   }
 
-  AuthForm.propTypes = {
-    label: PropTypes.node,
-    username: PropTypes.node,
-    setUsername: PropTypes.func,
-    email: PropTypes.node,
-    setEmail: PropTypes.func,
-    password: PropTypes.node,
-    setPassword: PropTypes.func,
-    onSubmit: PropTypes.func,
-  };
+
+  // AuthForm.propTypes = {
+  //   label: PropTypes.node,
+  //   username: PropTypes.node,
+  //   setUsername: PropTypes.func,
+  //   email: PropTypes.node,
+  //   setEmail: PropTypes.func,
+  //   password: PropTypes.node,
+  //   setPassword: PropTypes.func,
+  //   onSubmit: PropTypes.func,
+  // };
 
   export default Register

@@ -1,0 +1,181 @@
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a{
+    text-decoration: none;
+  }
+  
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+.hold_OurServices{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(333px, 1fr));
+    grid-gap: 30px;
+    align-items: baseline;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+.hold_hold_OurServices_title{
+    position: relative;
+}
+
+.hold_title{
+    position: relative;
+    text-align: center;
+}
+
+.hold_title h1{
+    font-family: 'Cairo Play', sans-serif;
+}
+
+.hold_title p{
+    text-align: right;
+}
+
+.hold_title img{
+    position: absolute;
+    /* top: -77px;
+    right: 15px; */
+    max-width: 100%;
+    width: 129px;
+    /* transform: rotate(164deg); */
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -90%) rotate(164deg) ;
+}
+
+.hold_Examples .hold_title img{
+    position: absolute;
+    max-width: 100%;
+    width: 129px;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) rotate(164deg);
+    z-index: -10;
+}
+
+.hold_OurServices_img{
+    position: relative;
+}
+
+.hold_OurServices_img img{
+    max-width: 100%;
+}
+
+.hold_OurServices .hold_list_OurServices{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hold_OurServices .list_OurServices{
+    text-align: right;
+}
+
+.hold_OurServices .list_OurServices li{
+    font-size: 20px;
+}
+
+.hold_OurServices .list_OurServices li span{
+    color: var(--main-color-default);
+    font-size: 30px;
+    padding-left: 7px;
+}
+
+.hold_OurServices .change{
+    opacity: 0.5;
+}
+
+.hold_OurServices .hold_Examples{
+    margin-top: 100px;
+}
+
+
+    .hold_Examples .slide{
+    min-height: 40vh;
+    /* min-height: 20vh; 
+   width: 30%; */
+    width: calc(100%);
+    background-size: cover !important;
+    background-position: center !important;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    }
+
+        .home-slider .swiper-button-prev{
+            height: 3rem;
+            width: 3rem;
+            line-height: 5rem;
+            color:var(--main-color-default);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.415);
+        }
+
+        .home-slider .swiper-button-next{
+            height: 3rem;
+            width: 3rem;
+            line-height: 5rem;
+            color:var(--main-color-default);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.415);
+            /* color:var(--white); */
+        }
+        
+        /* .swiper-button-next:hover,
+        .swiper-button-prev:hover{
+            background: white;
+            color:var(--white);
+        } */
+        
+        .swiper-button-next::after,
+        .swiper-button-prev::after{
+            font-size: 1.5rem;
+        }
+
+
+
+
+        .cardCss{
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+        }
+        
+        /* .hold_Examples_card_hold{
+            display: flex;
+            flex-direction: row-reverse;
+            padding: 10px 0;
+            border-bottom: 1px solid white;
+        } */
+        
+        .hold_Examples_card_hold img{
+            max-width: 20%;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .hold_Examples_card_hold{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .hold_Examples_card_hold .card-body p{
+            text-align: right;
+        }

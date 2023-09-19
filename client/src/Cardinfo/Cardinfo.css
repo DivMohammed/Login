@@ -1,0 +1,96 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Cairo", sans-serif;
+    /* cursor: none; */
+    position: relative;
+    /* height: 1000vh; */
+  }
+  
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a{
+    text-decoration: none;
+  }
+  
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  body {
+    font-family: "Cairo", sans-serif;
+  }
+  
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+
+
+.cardInfoUp{
+    position: relative;
+    text-align: center;
+    height: 50%;
+}
+
+@media (max-width: 450px) {
+  .cardInfoUp{
+    height: 37%;
+}
+}
+
+
+/* Large */
+    @media (min-width: 992px) {
+    .cardInfoUp{
+    background-image: none !important;
+  }
+  }
+
+.cardInfo{
+    position: absolute;
+    background-color: rgba(47, 155, 198, 0.436);
+    border-radius: 5px;
+    left: 50%;
+    transform: translate(-50%,20%);
+    -webkit-transform: translate(-50%,20%);
+    width: 130px;
+    padding: 10px;
+}
+
+.cardInfo::before{
+    content: "";
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid  rgba(47, 155, 198, 0.436);
+    top: -20%;
+    left: 40%;
+}
+
+.cardInfo button{
+    margin: auto;
+}
+
+
+.cardInfoUp img{
+  border-radius: 50%;
+  width: 60px;
+  border: 5px solid white;
+}

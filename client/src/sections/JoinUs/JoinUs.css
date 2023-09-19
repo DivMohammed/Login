@@ -1,0 +1,126 @@
+.join_us{
+    padding: 100px 0;
+    height: 100vh;
+}
+
+.join_us .hold_social{
+    height: 55vh;
+    position: relative;
+}
+
+.join_us h3{
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.join_us .background{
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-59%, -131%) rotate(196deg);
+}
+
+.join_us .logo{
+    height: 210px;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.join_us .WhatsAppIcon{
+    width: 250px;
+    position: absolute;
+    top: 52%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 646px) {
+    .join_us .logo{
+        height: 110px;
+    }
+    
+    .join_us .WhatsAppIcon{
+        width: 140px;
+    }
+    
+    .join_us h3{
+    font-size: 20px;
+}
+
+.join_us .background{
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-47%, -114%) rotate(196deg);
+}
+}
+
+
+.join_us button {
+    margin: auto;
+    font-family: inherit;
+    font-size: 20px;
+    background: #00E676;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+
+  @media (max-width: 646px) {
+    .join_us button {
+        font-size: 16px;
+        padding: 0.3em 1em;
+        padding-left: 0.9em;
+      }
+}
+  
+  .join_us button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .join_us button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .join_us button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  .join_us button:hover svg {
+    transform: translateX(2.5em) rotate(45deg) scale(1.1);
+  }
+  
+  .join_us button:hover span {
+    transform: translateX(6em);
+  }
+  
+  .join_us button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  

@@ -1,0 +1,32 @@
+.cardCss{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.card-hold{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    width: 375px;
+    /* background-image: linear-gradient(0.75turn,rgb(250 250 250 / 79%),rgb(250 250 250 / 79%),transparent);
+    background-size: cover;
+    background-position-y: center; */
+}
+
+.card-hold img{
+    max-width: 23%;
+    padding: 0 10px 10px 10px;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.search_icon{
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}

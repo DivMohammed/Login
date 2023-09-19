@@ -1,0 +1,118 @@
+.Discount{
+    /* height: calc(100vh - 92px); */
+    display: flex;
+    margin-top: 92px;
+    }
+    @media (max-width: 992px) {
+      .Discount{
+        flex-direction: column;
+      }
+    }
+    .Discount .info{
+      position: relative;
+      background-image: url(https://elzerowebschool.github.io/HTML_And_CSS_Template_Three/imgs/discount-background1.jpg);
+      background-size: cover;
+      /* width: 50%; */
+      z-index: 1;
+      text-align: center;
+      /* padding: 100px 30px 0px; */
+    }
+    @media (max-width: 992px) {
+      .Discount .info{
+        width: 100%;
+      }
+    }
+    .Discount .info::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(75, 137, 237,  95%);
+      z-index: -1;
+    }
+    .Discount .info h2{
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      padding-bottom: 30px;
+      letter-spacing: -2px;
+    }
+    .Discount .info p{
+      color: white;
+      line-height: 1.6;
+      font-size: 18px;
+      padding-bottom: 25px;
+    }
+    .Discount .info img{
+    width: 100%;
+    }
+
+
+
+
+    @media (max-width: 992px) {
+    .Discount .info img{
+    max-width: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.1;
+    height: 100vh;
+    object-fit: cover;
+        }
+    }
+
+
+
+
+
+    .Discount .Request{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 30px 60px;
+      z-index: 10;
+    }
+    @media (max-width: 992px) {
+      .Discount .Request{
+        width: 100%;
+      }
+    }
+    .Discount .Request h2{
+      letter-spacing: -2px;
+      font-size: 40px;
+      padding-bottom: 30px;
+    }
+    .Discount .Request form{
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 23px;
+    }
+    .Discount .Request form .input{
+    padding: 15px;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    display: block;
+    resize:none;
+    caret-color: var(--main-color-default);
+    }
+    .Discount .Request form .input:focus{
+      outline: none;
+    }
+    .Discount .Request form textarea{
+      height: 200px;
+      resize: none;
+    }
+    .Discount .Request form .submit{
+      background-color: var(--secondary-color-default);
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }

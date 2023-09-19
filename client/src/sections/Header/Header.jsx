@@ -1,16 +1,23 @@
-import {useRef , useState} from 'react';
+import {useRef , useState, createContext} from 'react';
 
 import './Header.css'
 
 import { HiBars3 } from 'react-icons/hi2';
-import { AiOutlineClose } from 'react-icons/ai';
+import { IoClose } from 'react-icons/io5';
 import  {useCookies} from 'react-cookie'
 
-import {Button} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
+import Cardinfo from '../../Cardinfo/Cardinfo';
 
+import imgPrev from '../../imgs/imgPrev.png'
+import { Link } from 'react-router-dom';
+
+
+export const info = createContext();
 
 
 const Header = () => {
+
     const [isIconActive, setIsIconActive] = useState();
     const [isNavActive, setIsNavActive] = useState();
 
@@ -19,42 +26,51 @@ const Header = () => {
     const icon = useRef().current
     const nav = useRef().current
 
-    const removeItem = () =>{
-        //meaning make it empty
-        setCookies("access_token", "")
-        window.localStorage.removeItem("userID")
-        window.location.reload(false)
-        }
+    // console.log(window.location.href)
+    // className={window.location.href === window.origin+'/' && 'active'}
 
-console.log(icon)
-  return (
-    
+    return (
+    <>
     <header>
-    <div className="container">
-        <a href="/" ><img className="logo" src="/src/imgs/logo.png" alt=""/></a>
-            <ul  className={`main-nav ${isNavActive? "active" : "" }`} ref={nav}>
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#about">من نحن</a></li>
-            <li><a href="#pricing">خدماتنا</a></li>
-            <li><a href="#pricing">أنضم ألينا</a></li>
-            <li><a href="#contact">تواصل معنا</a></li>
-            {`${window.location.origin}/` === window.location.href && !window.localStorage.getItem('userID')?
+        <Container> 
+        <Link to={window.origin} aria-label="to home"><img className="logo" src="/src/imgs/logo.png" alt="" /></Link>
+            <ul className={`main-nav ${isNavActive? "active" : "" }`} ref={nav}>
+            <li className={window.location.href === window.origin+'/' ? 'active' : ""} onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} style={{backgroundImage: `url('${imgPrev}')`}}><Link to={window.origin}>الرئيسية</Link></li>
+            <li className={window.location.href === window.origin+'/WhoAreWe' ? 'active' : ""} onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} style={{backgroundImage: `url('${imgPrev}')`}}><Link to="/WhoAreWe">من نحن</Link></li>
+            <li className={window.location.href === window.origin+'/OurServices' ? 'active' : ""} onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} style={{backgroundImage: `url('${imgPrev}')`}}><Link to='/OurServices'>خدماتنا</Link></li>
+            <li className={window.location.href === window.origin+'/joinUs' ? 'active' : ""} onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} style={{backgroundImage: `url('${imgPrev}')`}}><Link to="/joinUs">أنظم ألينا</Link></li>
+            <li className={window.location.href === window.origin+'/ContactUs' ? 'active' : ""} onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} style={{backgroundImage: `url('${imgPrev}')`}}><Link to="/ContactUs">تواصل معنا</Link></li>
+            {/* {`${window.location.origin}/` === window.location.href && !window.localStorage.getItem('userID')?
+                <a href="/register"><button className="button-36" role="button">تسجيل دخول</button></a>
+                : 
+                ""
+            } */}
+            {/* {window.location.href !== `${window.location.origin}/login` && window.location.href !== `${window.location.origin}/register` && !window.localStorage.getItem('userID')?
+                <a href="/register"><button className="button-36" role="button">تسجيل دخول</button></a>
+                :
+                ""
+            } */}
+            {!window.localStorage.getItem('userID')?
                 <a href="/register"><button className="button-36" role="button">تسجيل دخول</button></a>
                 :
                 ""
             }
             {window.localStorage.getItem('userID')?
-                <Button variant = "danger" onClick={removeItem}>LogOut</Button>
+                <>
+                <info.Provider value={{setIsNavActive ,setIsIconActive}}>
+                <Cardinfo/>
+                </info.Provider>
+                </>
                 :
                 ""
             }
             </ul>
             <div className="nav">
-                <i onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} className={`fa-solid fa-bars ${isIconActive ? "fa-times " + "setP": "" }`} ref={icon}> {isIconActive? <AiOutlineClose/> :<HiBars3/> }</i>
-            </div> 
-    </div>
+                <i onClick={()=>{(setIsIconActive(current => !current)) + (setIsNavActive(current => !current))}} className={`fa-solid fa-bars ${isIconActive ? "fa-times " + "setP": "" }`} ref={icon}> {isIconActive? <IoClose/> :<HiBars3/> }</i>
+            </div>
+        </Container>
     </header>
-
+    </>
 )
 }
 

@@ -1,0 +1,23 @@
+.card__title__upp{
+    text-align: right;
+    direction: rtl;
+    border: 1px solid rgb(149,149,149);
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 100px;
+    margin-top: 55px;
+}
+
+.message_Photo_gallery{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(149,149,149);
+    font-size: 40px;
+    font-family: "Cairo", sans-serif;
+    text-align: center;
+}
+
+
+

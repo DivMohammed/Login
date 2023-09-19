@@ -1,0 +1,18 @@
+.Photo_gallery{
+    width: 100%;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 200px;
+}
+
+.Photo_gallery .photo{
+    height: 200px;
+    width: calc(100% / 3);
+    border-right: 1px solid black;
+    border-bottom: 2px solid black;
+    /* border-radius: 5px; */
+    cursor: pointer;
+}
