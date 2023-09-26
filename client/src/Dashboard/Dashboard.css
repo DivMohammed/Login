@@ -370,6 +370,7 @@ z-index: 999;
   transition: 1s;
   opacity: 0;
   margin-top: 40px;
+  z-index: 999;
 }
 
 .popup.active{

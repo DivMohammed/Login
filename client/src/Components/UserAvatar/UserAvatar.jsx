@@ -11,12 +11,12 @@ const UserAvatar = () => {
 
     const  [avatar, setAvatar] = useState(null)
 
-    const _PORT = 3002
+    // const _PORT = 3002
 
 
     useEffect(() => {
 
-      const respawn = Axios.get(`${window.location.protocol}//${window.location.hostname}:${_PORT}/users`)
+      const respawn = Axios.get('http://localhost:3002/users')
       if(respawn){
        respawn.then((res) => (
         res.data.filter((user) => user._id === window.localStorage.getItem("userID") &&
@@ -30,7 +30,7 @@ const UserAvatar = () => {
 
   return (
 <>
-    <img src={avatar ? avatar : DEA} alt={DEA} />
+    <img src={avatar? avatar : DEA} alt={DEA} />
 </>
   )
 }

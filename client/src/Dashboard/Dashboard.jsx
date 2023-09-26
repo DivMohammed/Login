@@ -6,6 +6,7 @@ import {useState, useEffect, useRef} from 'react';
 import  {useCookies} from 'react-cookie'
 
 
+
 import {Button, Container, Form} from 'react-bootstrap'
 import Modal from 'react-modal';
 import Calendar from 'react-calendar';
@@ -21,10 +22,7 @@ import FriendsList from '../Components/Friends/FriendsList';
 
 import { IoSearch } from 'react-icons/io5';
 import { AiOutlineClose } from 'react-icons/ai';
-// import PhotoGallery from '../Components/PhotoGallery/PhotoGallery';
-// import Test from './test';
 
-// import prev from '../imgs/prev1.jpg'
 
 import imgPrev from '../imgs/imgPrev.png'
 
@@ -34,16 +32,25 @@ import arrow from '../imgs/arrow.png'
 
 
 
+
+
+
+
+
 const Dashboard = () => {
 
-  const _PORT = 3002
+  // const _PORT = 3002
+// It's okay for these to be public on client-side JS
+// You just don't ever want to leak your API Secret
+const api_key = "111846971978579"
+const cloud_name = "dz7qnyca4"
 
   const  [username, setUsername] = useState("")
   const  [email, setEmail] = useState("")
   const  [backgroundImage, setBackgroundImage] = useState("")
   const  [avatar, setAvatar] = useState(null)
   const  [file, setFile] = useState()
-  const  [image, setImage] = useState()
+  // const  [image, setImage] = useState()
   const  [change, setchange] = useState(false)
   const  [friends, setFriends] = useState([])
   const  [search, setSearch] = useState()
@@ -60,6 +67,228 @@ const Dashboard = () => {
   const  [counter, setCounter] = useState()
 
 
+  const  [imgUrl, setimgUrl] = useState()
+
+  const  [imgAvatarUrl, setimgAvatarUrl] = useState()
+  const [urlavatar, setUrlavatar] = useState();
+
+
+
+
+
+
+
+
+
+
+  // const [loading, setLoading] = useState(false);
+  // const [url, setUrl] = useState("");
+
+  // const convertBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
+
+  // function uploadSingleImage(base64) {
+  //   setLoading(true);
+  //   Axios
+  //     .post("http://localhost:5000/uploadImage", { image: base64 })
+  //     .then((res) => {
+  //       setUrl(res.data);
+  //       alert("Image uploaded Succesfully");
+  //     })
+  //     .then(() => setLoading(false))
+  //     .catch(console.log);
+  // }
+
+  // const uploadImage = async (event) => {
+  //   const files = event.target.files;
+  //   console.log(files.length);
+
+  //   if (files.length === 1) {
+  //     const base64 = await convertBase64(files[0]);
+  //     uploadSingleImage(base64);
+  //     return;
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const convertBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
+
+  // const uploadSingleImage = async () => {
+  //  await Axios.post("http://localhost:3002/uploadImage", { image: imgAvatarUrl })
+  //   .then((res) => {
+  //       setUrlavatar(res.data);
+  //       console.log(res.data)
+  //     })
+  //     .catch(console.log);
+  // }
+
+  // const uploadImage = async () => {
+  //   // e.preventDefault()
+  //   // const files = event.target.files;
+  //   // console.log(files.length);
+
+  //   // if (files.length === 1) {
+  //     const base64 = await convertBase64(imgAvatar);
+  //     uploadSingleImage(base64);
+  //     return;
+  //   // }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////
+
+
+// const handleImage = (e) =>{
+//   const file = e.target.files[0];
+//   setFile(file);
+//   setFileToBase(file);
+//   console.log(file);
+// }
+
+// const setFileToBase = (file) =>{
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onloadend = () =>{
+//       setimgUrl(reader.result);
+//       console.log(imgUrl)
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.querySelector("#upload-form").addEventListener("submit", async function (e) {
+//   e.preventDefault()
+
+//   // get signature. In reality you could store this in localstorage or some other cache mechanism, it's good for 1 hour
+//   const signatureResponse = await Axios.get("/get-signature")
+
+//   const data = new FormData()
+//   data.append("file", document.querySelector("#file-field").files[0])
+//   data.append("api_key", api_key)
+//   data.append("signature", signatureResponse.data.signature)
+//   data.append("timestamp", signatureResponse.data.timestamp)
+
+//   const cloudinaryResponse = await Axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`, data, {
+//     headers: { "Content-Type": "multipart/form-data" },
+//     onUploadProgress: function (e) {
+//       console.log(e.loaded / e.total)
+//     }
+//   })
+//   console.log(cloudinaryResponse.data)
+
+//   // send the image info back to our server
+//   const photoData = {
+//     public_id: cloudinaryResponse.data.public_id,
+//     version: cloudinaryResponse.data.version,
+//     signature: cloudinaryResponse.data.signature
+//   }
+
+//   Axios.post("/do-something-with-photo", photoData)
+// })
+
+
+
+////////////////////////
+
+
+
+
+
+// document.querySelector("#upload-form").addEventListener("submit", async function (e) {
+//   e.preventDefault()
+
+  // // get signature. In reality you could store this in localstorage or some other cache mechanism, it's good for 1 hour
+  // const signatureResponse = await Axios.get("/get-signature")
+
+  // const data = new FormData()
+  // data.append("file", document.querySelector("#file-field").files[0])
+  // data.append("api_key", api_key)
+  // data.append("signature", signatureResponse.data.signature)
+  // data.append("timestamp", signatureResponse.data.timestamp)
+
+  // const cloudinaryResponse = await Axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`, data, {
+  //   headers: { "Content-Type": "multipart/form-data" },
+  //   onUploadProgress: function (e) {
+  //     console.log(e.loaded / e.total)
+  //   }
+  // })
+  // console.log(cloudinaryResponse.data)
+
+  // // send the image info back to our server
+  // const photoData = {
+  //   public_id: cloudinaryResponse.data.public_id,
+  //   version: cloudinaryResponse.data.version,
+  //   signature: cloudinaryResponse.data.signature
+  // }
+
+  // Axios.post("/do-something-with-photo", photoData)
+// })
 
 
 
@@ -110,7 +339,7 @@ let index = counter; // will track our current image;
 
 
 const updateImage = (i) => {
-    let path = `${window.location.protocol}//${window.location.hostname}:${_PORT}/ImagesGallery/${GalleryImage[i]}`;
+    let path = `${GalleryImage[i]}`;
     largeImage.src = path;
     // imageName.innerHTML = path;
     // console.log(i)
@@ -175,9 +404,7 @@ const rightArrowFun = () => {
   const  [modelIsOpen, setIsOpen] = useState(false)
 
   function openModel(i){
-    change &&
-    setIsOpen(true)
-
+    change && setIsOpen(true) 
     console.log(i)
     // const url = URL.createObjectURL(i)
 
@@ -185,6 +412,8 @@ const rightArrowFun = () => {
     // imgg.src = url;
 
     // console.log(imgg)
+    // setimgAvatar(i)
+
   }
 
   function closeModel(i){
@@ -194,6 +423,8 @@ const rightArrowFun = () => {
 
   const onCrop = (i) => {
     setAvatar(i)
+    console.log(i)
+    setimgAvatarUrl(i)
     
     // const url = URL.createObjectURL(i)
 
@@ -209,12 +440,14 @@ const rightArrowFun = () => {
 
   useEffect(() => {
     // http://localhost:3002
+    // https://busy-gold-snail-tux.cyclic.cloud/users
+    // `${window.location.protocol}//${window.location.hostname}:${_PORT}/users`
 
-    const respawn = Axios.get(`${window.location.protocol}//${window.location.hostname}:${_PORT}/users`)
+    const respawn = Axios.get('http://localhost:3002/users')
     if(respawn){
      respawn.then((res) => (
       res.data.filter((user) => user._id === window.localStorage.getItem("userID") &&
-      setUsername(user.username) + setEmail(user.email) + setBackgroundImage(user.backgroundImage) + setAvatar(user.avatar) + setGalleryImage(user.GalleryImage) + setbackgroundImageOld(user.backgroundImage)
+      setUsername(user.username) + setEmail(user.email) + setBackgroundImage(user.backgroundImage) + setAvatar(user.avatar) + setGalleryImage(user.GalleryImage) + setbackgroundImageOld(user.backgroundImage) + setimgUrl(user.backgroundImage)
       )))
     }else{
       console.log("error")
@@ -238,14 +471,46 @@ console.log(import.meta.env.VITE_PORT_ONE)
       }
 
 
-      const handelUpload = (e) =>{
-        e.preventDefault()
-        const formdata = new FormData()
-        formdata.append("file", file);
-        Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/upload`, formdata)
-        .then(res => setBackgroundImage(res.data.image))
-        .catch(err => console.log(err))
+
+
+      // const handelUpload = async (e) =>{
+      //   e.preventDefault()
+      //   const formdata = new FormData()
+      //   formdata.append("file", file);
+      //   Axios.post(`https://busy-gold-snail-tux.cyclic.cloud/upload`, formdata)
+      //   .then(res => setBackgroundImage(res.data.image))
+      //   .catch(err => console.log(err))
+      // }
+
+
+
+
+
+
+
+      const handleImage = (e) =>{
+        const file = e.target.files[0];
+        setFile(file);
+        // setFileToBase(file);
+        // console.log(file);
       }
+
+
+      
+      // const setFileToBase = (file) =>{
+      //   if(file){
+      //   const reader = new FileReader();
+      //   reader.readAsDataURL(file);
+      //   reader.onloadend = () =>{
+      //       setimgUrl(reader.result);
+      //   }
+      // }
+      // }
+      // console.log(`this${imgUrl}`)
+
+
+
+
 
 
       const handelUploadGallery = async(e) =>{
@@ -254,29 +519,91 @@ console.log(import.meta.env.VITE_PORT_ONE)
         fileInputGallery.current.click()
       }
 
+// https://busy-gold-snail-tux.cyclic.cloud
+    // useEffect(()=>{
+    //    async function GalleryFun(){
+    //     if(Gallery){
+
+    //       const formdata = new FormData()
+    //       formdata.append("file", Gallery);
+    //      await Axios.post(`http:/localhost:3002/uploadGallery`, formdata)
+    //       .then(res => GalleryImage.push(res.data.image))
+    //       .catch(err => console.log(err))
+    //       // setGalleryImage(res.data.image)
+  
+    //       const id = window.localStorage.getItem("userID")
+    //      await Axios.post(`http:/localhost:3002/updateGallery`,{id, GalleryImage})
+    //       .then(res => console.log(res) + window.location.reload())
+    //       .catch(err => console.log(err))
+    //       // window.location.reload()
+    //       }
+    // }
+    // GalleryFun()
+    // },[Gallery])
+
+      // console.log(Gallery)
+
+const  [galleryId , setGalleryId] = useState()
 
     useEffect(()=>{
-       async function GalleryFun(){
-        if(Gallery){
+    const GalleryFun = async ()=>{
+      if(Gallery){
+        // get signature. In reality you could store this in localstorage or some other cache mechanism, it's good for 1 hour
+        const signatureResponse = await Axios.get("http://localhost:3002/get-signature")
+        
+        // document.querySelector("#file-field").files[0]
+        const data = new FormData()
+        data.append("file", Gallery)
+        data.append("api_key", api_key)
+        data.append("signature", signatureResponse.data.signature)
+        data.append("timestamp", signatureResponse.data.timestamp)
+        
+        console.log(data)
+        const cloudinaryResponse = await Axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+          onUploadProgress: function (e) {
+            console.log(e.loaded / e.total)
+          }
+        })
+        console.log(cloudinaryResponse.data.url)
+        setGalleryId(cloudinaryResponse.data.public_id)
+        await GalleryImage.push(cloudinaryResponse.data.url)
 
-          const formdata = new FormData()
-          formdata.append("file", Gallery);
-         await Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/uploadGallery`, formdata)
-          .then(res => GalleryImage.push(res.data.image))
-          .catch(err => console.log(err))
-          // setGalleryImage(res.data.image)
+      
+        // send the image info back to our server
+        const photoData = {
+          public_id: cloudinaryResponse.data.public_id,
+          version: cloudinaryResponse.data.version,
+          signature: cloudinaryResponse.data.signature
+        }
+      
+        Axios.post("http://localhost:3002/do-something-with-photo", photoData)
+
+
+
+
+        // const formdata = new FormData()
+        //   formdata.append("file", Gallery);
+        //  await Axios.post(`http:/localhost:3002/uploadGallery`, formdata)
+        //   .then(res => GalleryImage.push(res.data.image))
+        //   .catch(err => console.log(err))
+        //   setGalleryImage(res.data.image)
   
           const id = window.localStorage.getItem("userID")
-         await Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/updateGallery`,{id, GalleryImage})
-          .then(res => console.log(res) + window.location.reload())
+         await Axios.post('http://localhost:3002/updateGallery',{id, GalleryImage})
+          .then(res => console.log(res))
           .catch(err => console.log(err))
-          // window.location.reload()
-          }
-    }
+          window.location.reload()
+        }
+      }
     GalleryFun()
     },[Gallery])
 
-      // console.log(Gallery)
+
+
+
+
+      console.log(galleryId)
 
       console.log(GalleryImage)
 
@@ -297,9 +624,12 @@ const handleClick = async (i) =>{
   
 for (let index = 0; index < alldiv.length; index++) {
   if(i === alldiv[i].id){
+
+    const IdImgGallery = i.match("([^\\/]+)(?=\\.\\w+$)")[0];
+
   
     const id = window.localStorage.getItem("userID")
-         await Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/deleteGallery`,{id, i})
+         await Axios.post(`http://localhost:3002/deleteGallery`,{id, i, IdImgGallery})
           .then(res => console.log(res))
           .catch(err => console.log(err))
     }
@@ -328,26 +658,117 @@ for (let index = 0; index < alldiv.length; index++) {
         setchange(prev => !prev) + setFile(null)
       }
 
-      const handelSubmit = async(e) => { 
-        e.preventDefault()
+
+
+  // const  [urlbackgroundImag, setUrlbackgroundImag] = useState()
+
+
+  // const usefile = async () => {
+  //   // get signature. In reality you could store this in localstorage or some other cache mechanism, it's good for 1 hour
+  // const signatureResponse = await Axios.get("http://localhost:3002/get-signature")
+  
+  // // document.querySelector("#file-field").files[0]
+  // const data = new FormData()
+  // data.append("file", file)
+  // data.append("api_key", api_key)
+  // data.append("signature", signatureResponse.data.signature)
+  // data.append("timestamp", signatureResponse.data.timestamp)
+  
+  // console.log(data)
+  // const cloudinaryResponse = await Axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`, data, {
+  //   headers: { "Content-Type": "multipart/form-data" },
+  //   onUploadProgress: function (e) {
+  //     console.log(e.loaded / e.total)
+  //   }
+  // })
+  // console.log(cloudinaryResponse.data.url)
+
+  // // send the image info back to our server
+  // const photoData = {
+  //   public_id: cloudinaryResponse.data.public_id,
+  //   version: cloudinaryResponse.data.version,
+  //   signature: cloudinaryResponse.data.signature
+  // }
+
+  // Axios.post("http://localhost:3002/do-something-with-photo", photoData)
+  
+  // // http://localhost:3002
+  // // const urlbackgroundImag = cloudinaryResponse.data.url;
+  // setUrlbackgroundImag(cloudinaryResponse.data.url)
+  // setimgUrl(urlbackgroundImag);
+  //     }
+
+
+
+  const handelSubmit = async(e) => { 
+    e.preventDefault()
+
+    if(file){
+  // get signature. In reality you could store this in localstorage or some other cache mechanism, it's good for 1 hour
+  const signatureResponse = await Axios.get("http://localhost:3002/get-signature")
+  
+  // document.querySelector("#file-field").files[0]
+  const data = new FormData()
+  data.append("file", file)
+  data.append("api_key", api_key)
+  data.append("signature", signatureResponse.data.signature)
+  data.append("timestamp", signatureResponse.data.timestamp)
+  
+  console.log(data)
+  const cloudinaryResponse = await Axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+    onUploadProgress: function (e) {
+      console.log(e.loaded / e.total)
+    }
+  })
+  console.log(cloudinaryResponse.data.url)
+
+  // send the image info back to our server
+  const photoData = {
+    public_id: cloudinaryResponse.data.public_id,
+    version: cloudinaryResponse.data.version,
+    signature: cloudinaryResponse.data.signature
+  }
+
+  Axios.post("http://localhost:3002/do-something-with-photo", photoData)
+  
+  var urlbackgroundImag = cloudinaryResponse.data.url;
+  setimgUrl(urlbackgroundImag);
+  // var IdbackgroundImag = cloudinaryResponse.data.public_id;
+  // if(file){
+  //   usefile()
+  // }
+  var IdImgbackground = imgUrl.match("([^\\/]+)(?=\\.\\w+$)")[0];
+  }
+
+  if(imgAvatarUrl){
+  await Axios.post("http://localhost:3002/uploadImage", { image: imgAvatarUrl })
+  .then((res) => {
+      setUrlavatar(res.data);
+      console.log(res.data)
+    })
+    .catch(console.log);
+
+    var IdImgAvatar = imgUrl.match("([^\\/]+)(?=\\.\\w+$)")[0];
+  //  await uploadSingleImage()
+  }
         const id = window.localStorage.getItem("userID")
-        await Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/update`,{username, email, id, image, avatar, backgroundImageOld})
+        await Axios.post(`http://localhost:3002/update`,{username, email, id, urlbackgroundImag, urlavatar, avatar, imgUrl, IdImgbackground, IdImgAvatar})
         .then(res => console.log(res))
         .catch(err => console.log(err))
-    }
+      }
 
 
 
-
-
-
+console.log(`****************${urlavatar}`)
+console.log(`++++++++++++++++${imgAvatarUrl}`)
 
 
 
 
     useEffect(() => {
       const jdkn = async() => { 
-      await Axios.post(`${window.location.protocol}//${window.location.hostname}:${_PORT}/check`,{email})
+      await Axios.post(`http://localhost:3002/check`,{email})
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }
@@ -365,16 +786,15 @@ for (let index = 0; index < alldiv.length; index++) {
 
 
 
-    useEffect (() => {
+    // useEffect (() => {
 
-      const respawn = Axios.get(`${window.location.protocol}//${window.location.hostname}:${_PORT}/getImage`)
-      if(respawn){
-        respawn.then(res => res.data.filter((img) => img.image === backgroundImage ? setImage(img.image) : null))
-      .catch(err => console.log(err))
-      } 
+    //   const respawn = Axios.get(`https://busy-gold-snail-tux.cyclic.cloud/getImage`)
+    //   if(respawn){
+    //     respawn.then(res => res.data.filter((img) => img.image === backgroundImage ? setImage(img.image) : null))
+    //   .catch(err => console.log(err))
+    //   } 
     
-      },[backgroundImage])
-
+    //   },[backgroundImage])
 
 
 
@@ -386,7 +806,7 @@ for (let index = 0; index < alldiv.length; index++) {
 
       useEffect (() => {
 
-        const respawn = Axios.get(`${window.location.protocol}//${window.location.hostname}:${_PORT}/getImageGallery`)
+        const respawn = Axios.get(`http://localhost:3002/getImageGallery`)
         if(respawn){
           respawn.then(res => res.data.filter((img) => img.image === GalleryImage ? setGalleryImage(img.image) : null))
         .catch(err => console.log(err))
@@ -399,7 +819,7 @@ for (let index = 0; index < alldiv.length; index++) {
 
         useEffect(() => {
             async function getData(){
-            const respawn = await Axios.get(`${window.location.protocol}//${window.location.hostname}:${_PORT}/users`)
+            const respawn = await Axios.get(`http://localhost:3002/users`)
             if(respawn){
                 setFriends(respawn.data)
               }
@@ -420,13 +840,19 @@ for (let index = 0; index < alldiv.length; index++) {
           />
         })
 
+console.log(avatar)
+console.log(imgUrl)
+
+
 
 
   return (
     <>
     <div className="cardup">
 
-    <div className="card__img__UP">{image ? <img src={`${window.location.protocol}//${window.location.hostname}:${_PORT}/Images/`+image} alt=''/> : <img src={DEB} alt=''/>}
+    <div className="card__img__UP">{imgUrl ? <img src={imgUrl} alt=''/> : <img src={DEB} alt=''/>}
+
+    {/* <img src={'https://busy-gold-snail-tux.cyclic.cloud/Images/'+image} alt=''/> */}
     {change === true &&  <div className='filterBack'></div>}
 
     <div className="card__avatar" onClick={openModel}>
@@ -456,8 +882,9 @@ for (let index = 0; index < alldiv.length; index++) {
   </Modal>
   
     <div className="card__img__childe">
-      <input ref={fileInput} style={{display: 'none'}} type="file" onChange={e => setFile(e.target.files[0])} />
-      {change === true && file ? <button className='handelUpload' onClick={handelUpload}>Upload</button> : null}
+      <input ref={fileInput} style={{display: 'none'}} type="file" onChange={(e) => handleImage(e)} />
+      {/* <input ref={fileInput} style={{display: 'none'}} type="file" onChange={e => setFile(e.target.files[0])} /> */}
+      {/* {change === true && file ? <button className='handelUpload' onClick={handelUpload}>Upload</button> : null} */}
       {change === true && <button onClick={e => e.preventDefault() + fileInput.current.click()}>chose</button>}
     </div>
     </div>
@@ -465,6 +892,7 @@ for (let index = 0; index < alldiv.length; index++) {
     <Container>
       <button type="button" onClick={handelUpdate} className="btn btn-primary btn-sm change__img">{change === true? "الغاء التعديل" : "تعديل"}</button>
       {change === true && <button type="submit" onClick={handelSubmit} className="btn btn-primary btn-sm">حفظ التعديل</button>}
+      {/* <button type='button' onClick={uploadSingleImage}>up</button> */}
 
       <div className="card__title__up">
       <p className="card__title">الأسم:</p>
@@ -498,14 +926,13 @@ for (let index = 0; index < alldiv.length; index++) {
 
           </div>
         {members.filter((item) => {return search === '' ? '' : item.props.username.includes(search) && item.key !== window.localStorage.getItem("userID")})}
-        {/* {console.log(members)} */}
         </div>
 
         <div>
           <Calendar
             value={value}
             onChange={setValue}
-            calendarType='US'
+            calendarType='gregory'
             defaultView='month'
           />
         </div>
@@ -529,14 +956,17 @@ for (let index = 0; index < alldiv.length; index++) {
           <div className="photo" style={{backgroundImage:`url('${prev}')`, backgroundSize: "cover", backgroundPosition:"center"}}></div> */}
 
 {
-GalleryImage.map(i=>{
-  return <><div key={i} id={i} ref={divC} className="photo" onClick={() => imagesFun()} style={{backgroundImage:`url(${window.location.protocol}//${window.location.hostname}:${_PORT}/ImagesGallery/${[i]})`, backgroundSize: "cover", backgroundPosition:"center"}}>
-      <button key={i}  type="button" className='deleteImg' onClick={() => handleClick(i)}>x</button>
+    // return <><div key={i} id={i} ref={divC} className="photo" onClick={() => imagesFun()} style={{backgroundImage:`url(${window.location.protocol}//${window.location.hostname}:${_PORT}/ImagesGallery/${[i]})`, backgroundSize: "cover", backgroundPosition:"center"}}>
+
+
+GalleryImage.map((i,index)=>{
+  return <div key={index} id={i} ref={divC} className="photo" onClick={() => imagesFun()} style={{backgroundImage:`url(${[i]})`, backgroundSize: "cover", backgroundPosition:"center"}}>
+      <button key={index}  type="button" className='deleteImg' onClick={() => handleClick(i)}>x</button>
   </div>
-  {/* <button  type="button" className='deleteImg' onClick={() => handleClick(i)}>x</button> */}
-  </>
 })
 }
+
+
 
 
 {/* onClick={() => imagesFun()} */}
@@ -578,12 +1008,12 @@ GalleryImage.map(i=>{
         <button type='button' className="arrow-btn left-arrow" onClick={leftArrowFun}><img src={arrow} alt=""/></button>
         <button type='button' className="arrow-btn right-arrow" onClick={rightArrowFun}><img src={arrow} alt=""/></button>
         {/* <!-- image --> */}
-        <img src={`http://localhost:3002/ImagesGallery/${GalleryImage[counter]}`} className="large-image" alt=""/>
+        <img src={`${GalleryImage[counter]}`} className="large-image" alt=""/>
         {/* <!-- image-index --> */}
         <h1 className="index">{`0${counter + 1}`}</h1>
     </div>
 
-
+    {/* <UploadImage/> */}
     </Container>
     </Form>
     </div>

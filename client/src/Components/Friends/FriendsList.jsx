@@ -28,14 +28,14 @@ const FriendsList = (props) => {
 
     return (
     <>
-      <InputGroup>
+      <InputGroup >
       <Link style={{textDecoration:"none" , color:"black"}} onClick={showProfile} to={`${window.location.protocol}//${window.location.hostname}:${window.location.port}/Profile/${props.userId}`}  rel="noreferrer">
-      <div  className='card-hold' style={{backgroundImage: `linear-gradient(0.75turn,rgb(250 250 250 / 79%),rgb(250 250 250 / 79%),transparent) , url('${window.location.protocol}//${window.location.hostname}:${_PORT}/Images/${props.backgroundImage || DEB}` , backgroundSize: "cover", backgroundPositionY:"center"}}>
+      <div className='card-hold' style={{backgroundImage: `linear-gradient(0.75turn,rgb(250 250 250 / 79%),rgb(250 250 250 / 79%),transparent) , url('${window.location.protocol}//${window.location.hostname}:${_PORT}/Images/${props.backgroundImage || DEB}` , backgroundSize: "cover", backgroundPositionY:"center"}}>
 
       <img src={props.avatar}/>
       <div className="card-body">
-        <h4>{props.username}</h4>
-        <h6>{props.email}</h6>
+        <h4 >{props.username}</h4>
+        <h6 >{props.email}</h6>
       </div>
       </div>
       </Link>

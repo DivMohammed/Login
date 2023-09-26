@@ -15,11 +15,11 @@ const Cardinfo = () => {
 
   const {setIsNavActive, setIsIconActive} = useContext(info)
 
-  const _PORT = 3002
+  // const _PORT = 3002
 
 
-  const  [username, setUsername] = useState("")
-  const  [email, setEmail] = useState("")
+  // const  [username, setUsername] = useState("")
+  // const  [email, setEmail] = useState("")
   const  [backgroundImage, setBackgroundImage] = useState("")
   const  [ID, setID] = useState("")
 
@@ -32,11 +32,11 @@ const Cardinfo = () => {
 
   useEffect(() => {
 
-  const respawn = Axios.get(`${window.location.protocol}//${window.location.hostname}:${_PORT}/users`)
+  const respawn = Axios.get('http://localhost:3002/users')
   if(respawn){
    respawn.then((res) => (
     res.data.filter((str) => str._id === window.localStorage.getItem("userID")?
-    setUsername(str.username) + setEmail(str.email) + setID(str._id) + setBackgroundImage(str.backgroundImage)
+     setID(str._id) + setBackgroundImage(str.backgroundImage)
     :
     null
     )))
@@ -47,14 +47,14 @@ const Cardinfo = () => {
   },[])
 
 
-
 return (
   // `${window.location.protocol}//${window.location.hostname}:${_PORT}
   <>
   {/* {console.log(avatar)} */}
    {/* githubHandle="DivMohammed" */}
 {/* <info.Provider value={{username, email, setUsername, setEmail}}> */}
-      <div className='cardInfoUp' onClick={handleOpen} style={{backgroundImage: `url('${window.location.protocol}//${window.location.hostname}:${_PORT}/Images/${backgroundImage}')` , backgroundSize: "cover", backgroundPosition:"center"}}>
+      <div className='cardInfoUp' onClick={handleOpen} style={{backgroundImage: `url('${backgroundImage}')` , backgroundSize: "cover", backgroundPosition:"center"}}>
+      {/* <div className='cardInfoUp' onClick={handleOpen} style={{backgroundImage: `url('${window.location.protocol}//${window.location.hostname}:${_PORT}/Images/${backgroundImage}')` , backgroundSize: "cover", backgroundPosition:"center"}}> */}
         {/* <Avatar onClick={handleOpen} src={avatar} size={50} round="50px" /> */}
         <UserAvatar />
         {open &&
